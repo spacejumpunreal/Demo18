@@ -1,0 +1,7 @@
+.vs
+*log
+.fbuild
+SoftwareRenderer/Debug
+x64
+*.db
+*.opendb
