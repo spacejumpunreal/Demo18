@@ -86,6 +86,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d11.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -116,28 +119,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\DX11RenderDeviceResource.cpp" />
+    <ClCompile Include="..\Source\FileModule.cpp" />
     <ClCompile Include="..\Source\InputModule.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\DX11RenderDeviceModule.cpp" />
+    <ClCompile Include="..\Source\RendererModule.cpp" />
+    <ClCompile Include="..\Source\RendererObjects.cpp" />
     <ClCompile Include="..\Source\System.cpp" />
     <ClCompile Include="..\Source\TestMainModule.cpp" />
+    <ClCompile Include="..\Source\ThirdParty\DDSTextureLoader\DDSTextureLoader.cpp" />
     <ClCompile Include="..\Source\TickModule.cpp" />
+    <ClCompile Include="..\Source\VertexFormat.cpp" />
     <ClCompile Include="..\Source\WindowsWindowModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\Container.h" />
     <ClInclude Include="..\Source\D2DDriver.h" />
     <ClInclude Include="..\Source\Debug.h" />
     <ClInclude Include="..\Source\Demo18.h" />
+    <ClInclude Include="..\Source\DX11RenderDeviceResource.h" />
+    <ClInclude Include="..\Source\FileModule.h" />
     <ClInclude Include="..\Source\IModule.h" />
     <ClInclude Include="..\Source\InputModule.h" />
     <ClInclude Include="..\Source\Math.h" />
+    <ClInclude Include="..\Source\RenderDeviceModule.h" />
+    <ClInclude Include="..\Source\RenderDeviceResource.h" />
+    <ClInclude Include="..\Source\RendererModule.h" />
+    <ClInclude Include="..\Source\RendererObjects.h" />
     <ClInclude Include="..\Source\StringUtils.h" />
     <ClInclude Include="..\Source\Sync.h" />
     <ClInclude Include="..\Source\System.h" />
     <ClInclude Include="..\Source\Task.h" />
     <ClInclude Include="..\Source\TestMainModule.h" />
+    <ClInclude Include="..\Source\ThirdParty\DDSTextureLoader\DDSTextureLoader.h" />
     <ClInclude Include="..\Source\TickModule.h" />
     <ClInclude Include="..\Source\Time.h" />
     <ClInclude Include="..\Source\Utils.h" />
+    <ClInclude Include="..\Source\VertexFormat.h" />
     <ClInclude Include="..\Source\WindowModule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

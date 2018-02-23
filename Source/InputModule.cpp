@@ -52,11 +52,13 @@ namespace Demo18
 		void LogState()
 		{
 			InputState & curr = mStates[mCurr];
+			/*
 			printf(">>>>>>>\n");
 			printf("LeftPad:(%.1f,%.1f,%.1f)\n", curr.LeftPad.x, curr.LeftPad.y, curr.LeftPad.z);
 			printf("CurrentMousePos:(%d,%d)\n", curr.CurrentMousePos.x, curr.CurrentMousePos.y);
 			printf("CurrentMouseCoord:(%.3f,%.3f)\n", curr.CurrentMouseCoord.x, curr.CurrentMouseCoord.y);
 			printf("<<<<<<<\n");
+			*/
 		}
 		InputState& GetInputState()
 		{

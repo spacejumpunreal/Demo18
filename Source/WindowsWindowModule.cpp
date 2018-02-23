@@ -149,6 +149,11 @@ namespace Demo18
 				return ret;
 			return DefWindowProc(hWnd, uMsg, wParam, lParam);
 		}
+		void GetWindowHandle(void* out) 
+		{
+			auto rout = (HWND*)out;
+			*rout = mWindowHandle;
+		}
 	protected:
 		void _RunMessageLoop()
 		{
@@ -166,6 +171,7 @@ namespace Demo18
 					DispatchMessage(&msg);
 				}
 			}
+			ExitProcess(0);
 		}
 		bool _WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& result)
 		{
@@ -177,11 +183,18 @@ namespace Demo18
 				return true;
 			case WM_KEYDOWN:
 				//printf("WM_KEYDOWN:%x:%x\n", (unsigned int)wParam, (unsigned int)lParam);
-				mKeyStates[(KeyCode)wParam] = true;
+				{
+					std::lock_guard<std::mutex> guard(mInputLock);
+					mKeyStates[(KeyCode)wParam] = true;
+				}
+				
 				return true;
 			case WM_KEYUP:
 				//printf("WM_KEYUP:%x:%x\n", (unsigned int)wParam, (unsigned int)lParam);
-				mKeyStates[(KeyCode)wParam] = false;
+				{
+					std::lock_guard<std::mutex> guard(mInputLock);
+					mKeyStates[(KeyCode)wParam] = false;
+				}
 				return true;
 			case WM_SIZING:
 				if (mKeepAspect)

@@ -1,10 +1,8 @@
 #pragma once
 
-#include <cstdio>
-#include <string>
-#include <cstdarg>
+#include "Demo18.h"
 
-namespace SoftwareRenderer{
+namespace Demo18{
 	inline std::string FormatString(const char* fmt, ...)
 	{
 		const int max = 4096;

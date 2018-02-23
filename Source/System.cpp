@@ -9,6 +9,9 @@
 #include "InputModule.h"
 #include "TestMainModule.h"
 #include "WindowModule.h"
+#include "FileModule.h"
+#include "RendererModule.h"
+#include "RenderDeviceModule.h"
 
 #define ADD_MODULE(TYPE)\
 {\
@@ -31,9 +34,12 @@ namespace Demo18
 		SystemImp()
 			: mFrameDuration(1.0f / 60)
 		{
+			ADD_MODULE(File);
 			ADD_MODULE(Tick);
 			ADD_MODULE(Window);
 			ADD_MODULE(Input);
+			ADD_MODULE(Renderer);
+			ADD_MODULE(RenderDevice);
 			ADD_MODULE(TestMain);
 		}
 		void Initialize()

@@ -47,6 +47,14 @@ namespace Demo18
 		{
 			return std::isnan(x) || std::isnan(y) || std::isnan(z) || std::isnan(w);
 		}
+		Vector4<T>& operator+=(const Vector4<T>& r)
+		{
+			x += r.x;
+			y += r.y;
+			z += r.z;
+			w += r.w;
+			return *this;
+		}
 		friend Vector4<T> operator+(const Vector4<T>& l, const Vector4<T>& r)
 		{
 			return Vector4<T>(l.x + r.x, l.y + r.y, l.z + r.z, l.w + r.w);
@@ -127,17 +135,23 @@ namespace Demo18
 		{
 			return Vector3<T>(l.x + r.x, l.y + r.y, l.z + r.z);
 		}
-		Vector3<T>& operator+=(const Vector3<T>& r) const
+		Vector3<T>& operator+=(const Vector3<T>& r)
 		{
-			return Vector3<T>(x + r.x, y + r.y, z + r.z);
+			x += r.x;
+			y += r.y;
+			z += r.z;
+			return *this;
 		}
 		friend Vector3<T> operator-(const Vector3<T>& l, const Vector3<T>& r)
 		{
 			return Vector3<T>(l.x - r.x, l.y - r.y, l.z - r.z);
 		}
-		Vector3<T> operator-=(const Vector3<T>& r) const
+		Vector3<T> operator-=(const Vector3<T>& r)
 		{
-			return Vector3<T>(x - r.x, y - r.y, z - r.z);
+			x -= r.x;
+			y -= r.y;
+			z -= r.z;
+			return *this;
 		}
 		friend Vector3<T> operator*(const Vector3<T>& a, T b)
 		{
@@ -210,6 +224,14 @@ namespace Demo18
 		{
 			return std::isnan(x) || std::isnan(y);
 		}
+		friend bool operator==(const Vector2<T>&l, const Vector2<T>& r)
+		{
+			return l.x == r.x && l.y == r.y;
+		}
+		friend bool operator!=(const Vector2<T>&l, const Vector2<T>& r)
+		{
+			return !(l == r);
+		}
 		friend Vector2<T> operator+(const Vector2<T>& l, const Vector2<T>& r)
 		{
 			return Vector2<T>(l.x + r.x, l.y + r.y);
@@ -260,6 +282,7 @@ namespace Demo18
 	};
 	typedef Vector2<float> V2F;
 	typedef Vector2<int32_t> V2I;
+	typedef Vector2<uint32> V2U;
 	static_assert(sizeof(V2F) == 8, "sizeof(V2F) == 8");
 	static_assert(sizeof(V2I) == 8, "sizeof(V2I) == 8");
 
@@ -314,8 +337,8 @@ namespace Demo18
 		static Matrix4x4 RotateX(T pitch)
 		{
 			auto r = Identity();
-			auto cos = Cos(pitch);
-			auto sin = Sin(pitch);
+			T cos = Cos<T>(pitch);
+			T sin = Sin<T>(pitch);
 			r.m[1][1] = cos;
 			r.m[1][2] = -sin;
 			r.m[2][1] = sin;
@@ -412,7 +435,7 @@ namespace Demo18
 		return std::funcname(x);\
 	}
 	template<typename T>
-	inline T Cos(float x)
+	inline T Cos(T x)
 	{
 		BODY_FOR_FUNCTION(cos)
 	}

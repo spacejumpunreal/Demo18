@@ -24,7 +24,8 @@ namespace Demo18
 		virtual void SetKeepAspect(bool keep) = 0;
 		//inputs
 		virtual void CaptureState(KeyMap& keyMap, MouseState& mouseState) = 0;
-
+		//handle
+		virtual void GetWindowHandle(void* out) = 0;
 		
 	};
 	extern WindowModule* CreateWindowModule();

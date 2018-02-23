@@ -1,5 +1,6 @@
 .vs
 *log
+*.cap
 .fbuild
 SoftwareRenderer/Debug
 x64

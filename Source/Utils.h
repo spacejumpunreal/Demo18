@@ -21,7 +21,7 @@ inline void Copy(void* from, void* to, size_t bytes)
 }
 
 template<typename T> 
-inline void SafeRelease(T*& i)
+inline void ReleaseCOM(T*& i)
 {
 	if (i != nullptr)
 	{
@@ -29,3 +29,42 @@ inline void SafeRelease(T*& i)
 		i = nullptr;
 	}
 }
+
+template<typename T>
+class COMRef
+{
+public:
+	COMRef()
+		: mPtr(nullptr)
+	{}
+	COMRef(T* t)
+		: mPtr(t)
+	{}
+	T* operator->()
+	{
+		return mPtr;
+	}
+	void operator=(T* t)
+	{
+		_ReleaseCurrent();
+		mPtr = t;
+	}
+	T** operator&()
+	{
+		return &mPtr;
+	}
+	T* GetPtr()
+	{
+		return mPtr;
+	}
+protected:
+	void _ReleaseCurrent()
+	{
+		if (mPtr)
+		{
+			mPtr->Release();
+			mPtr = nullptr;
+		}
+	}
+	T* mPtr;
+};
