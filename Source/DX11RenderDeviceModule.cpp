@@ -95,11 +95,11 @@ namespace Demo18
 		void _InitD3D()
 		{
 			//device and device context
-			D3D_FEATURE_LEVEL featureLevels[] = { D3D_FEATURE_LEVEL_11_0, };
+			D3D_FEATURE_LEVEL featureLevels[] = { D3D_FEATURE_LEVEL_11_1, };
 			HRESULT ret;
 			ret = D3D11CreateDevice(
 				nullptr, D3D_DRIVER_TYPE_HARDWARE, NULL,
-				D3D11_CREATE_DEVICE_SINGLETHREADED | D3D11_CREATE_DEVICE_DEBUG,
+				D3D11_CREATE_DEVICE_DEBUG,
 				featureLevels,
 				sizeof(featureLevels) / sizeof(D3D_FEATURE_LEVEL),
 				D3D11_SDK_VERSION,
